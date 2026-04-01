@@ -1,0 +1,384 @@
+/* ============================================================
+   ASR Painting Services — WhyChooseUs Section CSS
+   Background: Warm cream/ivory  |  3D card + colorful reasons
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=DM+Sans:wght@300;400;500;600&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
+
+:root {
+  --gold:       #b8862e;
+  --gold-light: #d4a44c;
+  --gold-pale:  #f2d9a0;
+  --bg:         #fdf8f2;
+  --bg-card:    #fff8ef;
+  --bg-card2:   #fff3e4;
+  --border:     rgba(184, 134, 46, 0.18);
+  --text-dark:  #2a1e0d;
+  --text-body:  #6b5a42;
+  --muted:      #9a8470;
+  --t:          0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  --c1: #e8734a;
+  --c2: #4a9fd4;
+  --c3: #b8862e;
+  --c4: #5aab6e;
+  --c5: #9b6bbf;
+}
+
+/* ============================================================
+   SECTION
+   ============================================================ */
+.why-choose {
+  width: 100%;
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(ellipse 65% 55% at 5%  50%, rgba(232,115,74,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 45% at 95% 20%, rgba(74,159,212,0.05) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 50% 100%,rgba(184,134,46,0.06) 0%, transparent 50%),
+    repeating-linear-gradient(
+      135deg,
+      transparent, transparent 60px,
+      rgba(184,134,46,0.025) 60px, rgba(184,134,46,0.025) 61px
+    );
+  padding: 110px 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.why-choose::before,
+.why-choose::after {
+  content: '';
+  position: absolute;
+  left: 8%; right: 8%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.why-choose::before { top: 0;    opacity: 0.30; }
+.why-choose::after  { bottom: 0; opacity: 0.20; }
+
+.why-bg-mesh {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 500px 400px at 90% 10%, rgba(184,134,46,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 400px 350px at 5%  90%, rgba(232,115,74,0.05) 0%, transparent 70%);
+}
+
+/* ============================================================
+   GRID
+   ============================================================ */
+.why-choose-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 72px;
+  align-items: start;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================
+   LEFT — CONTENT
+   ============================================================ */
+.why-choose-content { display: flex; flex-direction: column; }
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.section-label::before {
+  content: '';
+  display: block;
+  width: 28px; height: 1.5px;
+  background: var(--gold);
+  border-radius: 2px;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 3.5vw, 2.9rem);
+  font-weight: 700;
+  line-height: 1.18;
+  color: var(--text-dark);
+  margin-bottom: 40px;
+}
+.section-title span {
+  color: var(--gold);
+  font-style: italic;
+  position: relative;
+  display: inline-block;
+}
+.section-title span::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  border-radius: 2px;
+}
+
+/* ── Reasons ── */
+.why-reasons { display: flex; flex-direction: column; gap: 14px; }
+
+.why-reason {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 20px;
+  border-radius: 14px;
+  background: var(--bg-card);
+  border: 1px solid rgba(184,134,46,0.12);
+  cursor: default;
+  animation: reason-in 0.6s ease both;
+  transition: background var(--t), border-color var(--t), transform var(--t), box-shadow var(--t);
+}
+
+.why-reason:nth-child(1) { animation-delay: 0.05s; border-left: 3px solid var(--c1); }
+.why-reason:nth-child(2) { animation-delay: 0.12s; border-left: 3px solid var(--c2); }
+.why-reason:nth-child(3) { animation-delay: 0.19s; border-left: 3px solid var(--c3); }
+.why-reason:nth-child(4) { animation-delay: 0.26s; border-left: 3px solid var(--c4); }
+.why-reason:nth-child(5) { animation-delay: 0.33s; border-left: 3px solid var(--c5); }
+
+@keyframes reason-in {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.why-reason:hover {
+  background: var(--bg-card2);
+  border-left-width: 4px;
+  transform: translateX(6px);
+  box-shadow: 0 6px 28px rgba(184,134,46,0.12);
+}
+
+.why-reason-icon-box {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  transition: transform var(--t);
+}
+.why-reason:hover .why-reason-icon-box { transform: scale(1.12) rotate(-4deg); }
+
+.why-reason:nth-child(1) .why-reason-icon-box { background: rgba(232,115,74,0.12);  color: var(--c1); }
+.why-reason:nth-child(2) .why-reason-icon-box { background: rgba(74,159,212,0.12);  color: var(--c2); }
+.why-reason:nth-child(3) .why-reason-icon-box { background: rgba(184,134,46,0.12);  color: var(--c3); }
+.why-reason:nth-child(4) .why-reason-icon-box { background: rgba(90,171,110,0.12);  color: var(--c4); }
+.why-reason:nth-child(5) .why-reason-icon-box { background: rgba(155,107,191,0.12); color: var(--c5); }
+
+.why-reason-text { display: flex; flex-direction: column; gap: 4px; }
+.why-reason-text strong { font-size: 0.92rem; font-weight: 600; color: var(--text-dark); letter-spacing: 0.01em; }
+.why-reason-text span   { font-size: 0.82rem; font-weight: 300; color: var(--text-body); line-height: 1.6; }
+
+/* ============================================================
+   RIGHT — VISUAL
+   ============================================================ */
+.why-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: sticky;
+  top: 100px;
+}
+
+/* 3D floating card — light */
+.why-big-card {
+  background: linear-gradient(145deg, #fff8ef 0%, #fdf2e2 50%, #f9ecd4 100%);
+  border: 1px solid rgba(184,134,46,0.25);
+  border-radius: 24px;
+  padding: 36px 32px 32px;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 24px 70px rgba(150,100,30,0.18),
+    0 0 0 1px rgba(184,134,46,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.90);
+  transform: perspective(1000px) rotateY(-4deg) rotateX(2deg);
+  transition: transform var(--t), box-shadow var(--t);
+  animation: card-float 6s ease-in-out infinite alternate;
+}
+
+@keyframes card-float {
+  from { transform: perspective(1000px) rotateY(-4deg) rotateX(2deg) translateY(0); }
+  to   { transform: perspective(1000px) rotateY(-2deg) rotateX(1deg) translateY(-8px); }
+}
+
+.why-big-card:hover {
+  animation: none;
+  transform: perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(-4px) scale(1.01);
+  box-shadow:
+    0 32px 90px rgba(150,100,30,0.24),
+    0 0 0 1px rgba(184,134,46,0.30),
+    inset 0 1px 0 rgba(255,255,255,0.90);
+}
+
+/* Shine sweep */
+.why-big-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -60%;
+  width: 40%; height: 100%;
+  background: linear-gradient(105deg, transparent, rgba(255,255,255,0.45), transparent);
+  animation: card-shine 4s ease-in-out infinite;
+}
+@keyframes card-shine {
+  0%   { left: -60%; }
+  100% { left: 160%; }
+}
+
+/* Inner glow orb */
+.why-big-card::after {
+  content: '';
+  position: absolute;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(184,134,46,0.08) 0%, transparent 70%);
+  bottom: -100px; right: -80px;
+  pointer-events: none;
+}
+
+/* Trophy icon */
+.why-card-icon-wrap {
+  width: 64px; height: 64px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  color: #fff8ee;
+  box-shadow: 0 8px 30px rgba(184,134,46,0.35), 0 0 0 4px rgba(184,134,46,0.10);
+  margin-bottom: 20px;
+  animation: trophy-pulse 3s ease-in-out infinite;
+}
+@keyframes trophy-pulse {
+  0%, 100% { box-shadow: 0 8px 30px rgba(184,134,46,0.35), 0 0 0 4px rgba(184,134,46,0.10); }
+  50%       { box-shadow: 0 8px 40px rgba(184,134,46,0.55), 0 0 0 8px rgba(184,134,46,0.07); }
+}
+
+.why-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #2a1e0d;
+  margin-bottom: 12px;
+}
+.why-card-desc {
+  font-size: 0.87rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: #7a5f38;
+  margin-bottom: 28px;
+}
+
+/* Metrics */
+.why-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.why-metric {
+  background: rgba(184,134,46,0.07);
+  border: 1px solid rgba(184,134,46,0.18);
+  border-radius: 14px;
+  padding: 16px 14px;
+  text-align: center;
+  transition: background var(--t), border-color var(--t), transform var(--t);
+}
+.why-metric:hover {
+  background: rgba(184,134,46,0.14);
+  border-color: rgba(184,134,46,0.35);
+  transform: scale(1.03);
+}
+
+.why-metric-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--gold);
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+.why-metric-label {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Trust badges */
+.why-badges { display: flex; gap: 10px; }
+
+.why-badge {
+  flex: 1;
+  background: var(--bg-card);
+  border: 1px solid rgba(184,134,46,0.15);
+  border-radius: 12px;
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  transition: background var(--t), border-color var(--t), transform var(--t), box-shadow var(--t);
+}
+.why-badge:hover {
+  background: var(--bg-card2);
+  border-color: rgba(184,134,46,0.35);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(184,134,46,0.12);
+}
+
+.why-badge i { font-size: 1.1rem; }
+.why-badge:nth-child(1) i { color: var(--c3); }
+.why-badge:nth-child(2) i { color: var(--c2); }
+.why-badge:nth-child(3) i { color: var(--c4); }
+
+.why-badge span {
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 960px) {
+  .why-choose-inner   { grid-template-columns: 1fr; gap: 52px; }
+  .why-visual         { position: static; }
+  .why-big-card       { transform: none; animation: none; }
+  .why-big-card:hover { transform: translateY(-4px); }
+}
+
+@media (max-width: 600px) {
+  .why-choose { padding: 80px 20px; }
+  .why-badges { flex-direction: column; }
+  .why-reason { padding: 14px 16px; }
+}
+
+@media (max-width: 380px) {
+  .why-choose     { padding: 60px 16px; }
+  .why-metric-val { font-size: 1.5rem; }
+  .why-card-title { font-size: 1.3rem; }
+}

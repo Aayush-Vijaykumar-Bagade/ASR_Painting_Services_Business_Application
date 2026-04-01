@@ -1,0 +1,437 @@
+/* ============================================================
+   ASR Painting Services — HowWeWork Section CSS
+   Icons: Font Awesome 6  |  Background: Warm Cream/Ivory
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=DM+Sans:wght@300;400;500;600&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
+
+:root {
+  --gold:       #b8862e;
+  --gold-light: #d4a44c;
+  --bg:         #faf6f0;
+  --bg-card:    #fff8ef;
+  --border:     rgba(184, 134, 46, 0.18);
+  --text-dark:  #2a1e0d;
+  --text-body:  #6b5a42;
+  --muted:      #9a8470;
+  --t:          0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Step accent colors */
+  --c1: #e8734a; /* Contact  — warm orange */
+  --c2: #4a9fd4; /* Visit    — sky blue    */
+  --c3: #b8862e; /* Quote    — gold        */
+  --c4: #5aab6e; /* Labor    — green       */
+  --c5: #9b6bbf; /* Quality  — purple      */
+}
+
+/* ============================================================
+   SECTION SHELL
+   ============================================================ */
+.how-we-work {
+  width: 100%;
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(ellipse 60% 50% at 80% 10%, rgba(184,134,46,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 10% 90%, rgba(184,134,46,0.05) 0%, transparent 55%),
+    repeating-linear-gradient(
+      135deg,
+      transparent, transparent 60px,
+      rgba(184,134,46,0.025) 60px, rgba(184,134,46,0.025) 61px
+    );
+  padding: 110px 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.how-we-work::before,
+.how-we-work::after {
+  content: '';
+  position: absolute;
+  left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.how-we-work::before { top: 0;    opacity: 0.30; }
+.how-we-work::after  { bottom: 0; opacity: 0.20; }
+
+/* Ambient orb */
+.hww-bg-orb {
+  position: absolute;
+  width: 700px; height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(184,134,46,0.06) 0%, transparent 70%);
+  top: -200px; right: -200px;
+  pointer-events: none;
+  animation: orb-drift 10s ease-in-out infinite alternate;
+}
+@keyframes orb-drift {
+  from { transform: translate(0, 0); }
+  to   { transform: translate(-30px, 40px); }
+}
+
+.how-we-work-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.hww-header {
+  text-align: center;
+  margin-bottom: 72px;
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.section-label::before,
+.section-label::after {
+  content: '';
+  display: block;
+  width: 28px; height: 1.5px;
+  background: var(--gold);
+  border-radius: 2px;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.18;
+  color: var(--text-dark);
+  margin-bottom: 18px;
+}
+.section-title span {
+  color: var(--gold);
+  font-style: italic;
+  position: relative;
+  display: inline-block;
+}
+.section-title span::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  border-radius: 2px;
+}
+
+.hww-subtitle {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--text-body);
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* ============================================================
+   STEPS GRID
+   ============================================================ */
+.hww-steps {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+  position: relative;
+  margin-bottom: 64px;
+}
+
+/* Gradient connector line */
+.hww-connector {
+  position: absolute;
+  top: 52px; left: 10%; right: 10%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--c1), var(--c2), var(--c3), var(--c4), var(--c5));
+  border-radius: 2px;
+  z-index: 0;
+  opacity: 0.3;
+}
+.hww-connector::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: inherit;
+  animation: line-shimmer 3s ease-in-out infinite;
+  opacity: 0;
+}
+@keyframes line-shimmer {
+  0%, 100% { opacity: 0; }
+  50%       { opacity: 0.5; }
+}
+
+/* ── Single step ── */
+.hww-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  padding: 0 8px;
+  animation: step-rise 0.7s ease both;
+}
+
+.hww-step:nth-child(2) { animation-delay: 0.10s; }
+.hww-step:nth-child(3) { animation-delay: 0.20s; }
+.hww-step:nth-child(4) { animation-delay: 0.30s; }
+.hww-step:nth-child(5) { animation-delay: 0.40s; }
+.hww-step:nth-child(6) { animation-delay: 0.50s; }
+
+@keyframes step-rise {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Number badge */
+.hww-step-num-badge {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #fff;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -6px; right: -6px;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Circle */
+.hww-step-circle {
+  width: 88px; height: 88px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.7rem;
+  position: relative;
+  margin-bottom: 20px;
+  flex-shrink: 0;
+  transition: transform var(--t), box-shadow var(--t);
+  cursor: default;
+}
+.hww-step:hover .hww-step-circle {
+  transform: translateY(-6px) scale(1.06);
+}
+
+/* Ring pulse */
+.hww-step-circle::before {
+  content: '';
+  position: absolute; inset: -6px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  opacity: 0;
+  animation: ring-pulse 2.5s ease-in-out infinite;
+}
+@keyframes ring-pulse {
+  0%, 100% { opacity: 0; transform: scale(1); }
+  50%       { opacity: 0.35; transform: scale(1.08); }
+}
+
+/* ── Per-step color theming ── */
+/* Step 1 — orange */
+.hww-step:nth-child(2) .hww-step-circle {
+  background: rgba(232,115,74,0.12);
+  color: var(--c1);
+  box-shadow: 0 8px 30px rgba(232,115,74,0.2);
+  border: 1.5px solid rgba(232,115,74,0.25);
+}
+.hww-step:nth-child(2) .hww-step-num-badge { background: var(--c1); }
+.hww-step:nth-child(2):hover .hww-step-circle { box-shadow: 0 14px 40px rgba(232,115,74,0.35); }
+
+/* Step 2 — blue */
+.hww-step:nth-child(3) .hww-step-circle {
+  background: rgba(74,159,212,0.12);
+  color: var(--c2);
+  box-shadow: 0 8px 30px rgba(74,159,212,0.2);
+  border: 1.5px solid rgba(74,159,212,0.25);
+}
+.hww-step:nth-child(3) .hww-step-num-badge { background: var(--c2); }
+.hww-step:nth-child(3):hover .hww-step-circle { box-shadow: 0 14px 40px rgba(74,159,212,0.35); }
+
+/* Step 3 — gold */
+.hww-step:nth-child(4) .hww-step-circle {
+  background: rgba(184,134,46,0.12);
+  color: var(--c3);
+  box-shadow: 0 8px 30px rgba(184,134,46,0.2);
+  border: 1.5px solid rgba(184,134,46,0.30);
+}
+.hww-step:nth-child(4) .hww-step-num-badge { background: var(--c3); }
+.hww-step:nth-child(4):hover .hww-step-circle { box-shadow: 0 14px 40px rgba(184,134,46,0.40); }
+
+/* Step 4 — green */
+.hww-step:nth-child(5) .hww-step-circle {
+  background: rgba(90,171,110,0.12);
+  color: var(--c4);
+  box-shadow: 0 8px 30px rgba(90,171,110,0.2);
+  border: 1.5px solid rgba(90,171,110,0.25);
+}
+.hww-step:nth-child(5) .hww-step-num-badge { background: var(--c4); }
+.hww-step:nth-child(5):hover .hww-step-circle { box-shadow: 0 14px 40px rgba(90,171,110,0.35); }
+
+/* Step 5 — purple */
+.hww-step:nth-child(6) .hww-step-circle {
+  background: rgba(155,107,191,0.12);
+  color: var(--c5);
+  box-shadow: 0 8px 30px rgba(155,107,191,0.2);
+  border: 1.5px solid rgba(155,107,191,0.25);
+}
+.hww-step:nth-child(6) .hww-step-num-badge { background: var(--c5); }
+.hww-step:nth-child(6):hover .hww-step-circle { box-shadow: 0 14px 40px rgba(155,107,191,0.35); }
+
+/* FA icon size */
+.hww-step-icon-fa { font-size: 1.65rem; }
+
+/* Step text */
+.hww-step-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+.hww-step-desc {
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: var(--text-body);
+  line-height: 1.65;
+}
+
+/* ============================================================
+   FEATURE CARDS ROW  (new section)
+   ============================================================ */
+.hww-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 56px;
+}
+
+.hww-feature-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 22px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+}
+.hww-feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 36px rgba(184,134,46,0.12);
+  border-color: rgba(184,134,46,0.35);
+}
+
+.hww-feature-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.hww-feature-card:nth-child(1) .hww-feature-icon { background: rgba(232,115,74,0.12); color: var(--c1); }
+.hww-feature-card:nth-child(2) .hww-feature-icon { background: rgba(90,171,110,0.12); color: var(--c4); }
+.hww-feature-card:nth-child(3) .hww-feature-icon { background: rgba(184,134,46,0.12); color: var(--c3); }
+
+.hww-feature-text h5 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+}
+.hww-feature-text p {
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--text-body);
+  line-height: 1.55;
+}
+
+/* ============================================================
+   CTA
+   ============================================================ */
+.hww-cta-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.gold-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+  color: #fff8ee;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  padding: 15px 38px;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 8px 28px rgba(184,134,46,0.30);
+  transition: transform var(--t), box-shadow var(--t), filter var(--t);
+}
+.gold-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 14px 40px rgba(184,134,46,0.45);
+  filter: brightness(1.06);
+}
+.gold-btn i { font-size: 0.9rem; }
+
+.hww-cta-note {
+  font-size: 0.78rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.hww-cta-note i { color: var(--c4); font-size: 0.85rem; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .hww-steps    { grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .hww-connector { display: none; }
+  .hww-features { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 720px) {
+  .how-we-work  { padding: 80px 24px; }
+  .hww-steps    { grid-template-columns: repeat(2, 1fr); gap: 28px; }
+  .hww-features { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .hww-steps          { grid-template-columns: 1fr; gap: 24px; }
+  .hww-step           { flex-direction: row; text-align: left; gap: 18px; align-items: flex-start; }
+  .hww-step-circle    { width: 64px; height: 64px; font-size: 1.3rem; margin-bottom: 0; flex-shrink: 0; }
+  .hww-step-icon-fa   { font-size: 1.3rem; }
+  .hww-header         { margin-bottom: 48px; }
+}
+
+@media (max-width: 380px) {
+  .how-we-work { padding: 60px 16px; }
+  .gold-btn    { font-size: 0.85rem; padding: 13px 28px; }
+}
